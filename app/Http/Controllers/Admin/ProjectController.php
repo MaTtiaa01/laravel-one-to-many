@@ -6,7 +6,7 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Http\Controllers\Controller;
-
+use App\Models\Type;
 //take data from logged user
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -70,7 +70,10 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        return view('admin.projects.show', compact('project'));
+        //dd(Type::wherelike('id', $project->type_id));
+        $types = Type::all();
+        //dd($types[$project->type_id]);
+        return view('admin.projects.show', compact('project', 'types'));
     }
 
     /**
