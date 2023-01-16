@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Exists;
 
 class StoreProjectRequest extends FormRequest
 {
@@ -26,6 +27,7 @@ class StoreProjectRequest extends FormRequest
         return [
             'title' => 'required|max:100|unique:projects',
             'cover_img' => 'nullable|image|max:300',
+            'type_id' => 'nullable|exists:types,id',
             'description' => 'nullable|max:400',
             'language' => 'nullable'
         ];
